@@ -1,7 +1,9 @@
 //Create variables here
-var  dog, dogImg , happyDogImg ,dataBase ,happyDog, foodS, foodStock ,dogeat , shreya , shreyaImg ;
-var foodRemaining = 30;
-var foodObj , fedTime , lastFed ;
+var  dog, dogImg , happyDogImg ,dataBase ,happyDog, foodStock ,dogeat , shreya , shreyaImg ;
+//var foodRemaining = 30;
+var lastFed = 0;
+var foodS = 0;
+var foodObj , fedTime;
 var foodCount ;
 
 function preload()
@@ -74,12 +76,13 @@ function draw() {
   fill("yellow");
   text("PRESS THE UP ARROW TO FEED JIMMY MILK",40,50);
   textSize(15);
-  text("Food Remaining:" + foodRemaining,40,100);
+  //text("Food Remaining:" + foodRemaining,40,100);
 
 }
 
 function readStock (data){
     foodS = data.val();
+    foodObj.updateFoodStock(foodS);
 }
 
 function writeStock (x){
@@ -93,6 +96,8 @@ function feedDog (){
   dog.addImage(happyDogImg);
   dog.scale = 0.3;
 
+  
+  console.log("FeedingDog..FoodStock: " + foodObj.getFoodStock());
   foodObj.updateFoodStock(foodObj.getFoodStock() - 1);
   database.ref('/').update({
     Food: foodObj.getFoodStock(),
