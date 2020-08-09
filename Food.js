@@ -1,28 +1,38 @@
 class Food {
     constructor(){
     
+        this.foodStock =0;
+        this.lastFed;
         this.image = loadImage("Milk.png");
-
-        var foodStock;
-        var lastFed;
-
     }
 
-    getFoodStock(){
-        foodStock = dataBase.ref('Food'); 
-        foodStock.on("value",(data) =>{
-        foodCount = data.val(); }) 
+     getFoodStock(){
+    //     foodStock = dataBase.ref('Food'); 
+    //     foodStock.on("value",(data)=>{
+    //     foodCount = data.val(); 
+    //     }) 
+        return this.foodStock;
+        
     } 
 
     updateFoodStock(count){
-        dataBase.ref('/').update({
-        foodCount: count }); 
+        // dataBase.ref('/').update({
+        // foodCount: count }); 
+        this.foodStock = count;
     }
 
     deductFood(){
-        writeStock(foodS);
-        dog.addImage(happyDogImg,0,0);
-        foodRemaining = foodRemaining - 1;
+        // writeStock(foodS);
+        // dog.addImage(happyDogImg,0,0);
+        // foodRemaining = foodRemaining - 1;
+
+        if(this.foodStock>0){
+            this.foodStock=this.foodStock-1;
+        }
+    }
+
+    getFedTime(lastFed){
+        this.lastFed=lastFed;
     }
 
     display(){
